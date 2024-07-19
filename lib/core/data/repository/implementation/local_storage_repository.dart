@@ -17,13 +17,15 @@ class LocalStorageRepository extends LocalStorageRepositoryInterface {
   static const userKey = 'USER_KEY';
 
   @override
-  Future<Either<Failure, User>> getLocalUser() async {
+  Future<Either<Failure, bool>> makeLoginFake({required User user}) async {
     try {
       final userJson = sharedPreferences.getString(userKey);
-      User user = User.fromJson(
+      User userLocal = User.fromJson(
         json.decode(userJson!),
       );
-      return right(user);
+
+      return right((user.username == userLocal.username &&
+          user.password == userLocal.password));
     } catch (e) {
       return left(Failure.noActionComplete(message: e.toString()));
     }

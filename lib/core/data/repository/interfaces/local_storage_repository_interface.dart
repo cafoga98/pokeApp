@@ -5,7 +5,7 @@ import '/core/shared/error_handle/failure.dart';
 
 abstract class LocalStorageRepositoryInterface{
 
-  Future<Either<Failure, User>> getLocalUser();
+  Future<Either<Failure, bool>> makeLoginFake({required User user});
 
   Future<bool> setLocalUser({required User user});
 }
