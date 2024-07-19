@@ -23,6 +23,13 @@ class _SplashPageState extends State<SplashPage> {
         _controller.play();
         _controller.setLooping(true);
       });
+
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        context.router.replace(const LoginRoute());
+      },
+    );
   }
 
   @override
