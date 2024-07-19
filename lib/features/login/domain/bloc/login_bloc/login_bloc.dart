@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:poke_app/core/data/repository/implementation/local_storage_repository.dart';
+import 'package:poke_app/features/login/domain/entities/user.dart';
+import 'package:poke_app/generated/l10n.dart';
 
 import '/core/shared/error_handle/failure.dart';
 
@@ -30,7 +32,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     await Future.delayed(const Duration(seconds: 2));
 
     /// Call the login repository to login the user.
-    final response = await localStorageRepository.getLocalUser();
+    final response = await localStorageRepository.makeLoginFake(
+      user: User(
+        password: event.password,
+        username: event.userName!,
+      ),
+    );
 
     /// Emit the appropriate state depending on the response from the login repository.
     emit(
@@ -39,11 +46,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           return LoginState.error(failure: left);
         },
         (right) {
-          if (right.username == event.userName &&
-              right.password == event.password) {
-            return LoginState.done(message: 'Login Correcto');
+          if (right) {
+            return LoginState.done(message: S.current.login);
+          } else {
+            return LoginState.error(
+              failure: Failure.serverFailure(
+                message: S.current.wrongCredentials,
+              ),
+            );
           }
-          return LoginState.done(message: 'Login Incorrecto');
         },
       ),
     );

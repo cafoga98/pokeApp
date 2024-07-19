@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poke_app/core/presentation/widgets/loading_page.dart';
+import 'package:poke_app/core/shared/auto_route/router.dart';
 import 'package:poke_app/core/shared/utils/colors_repository.dart';
 import 'package:poke_app/core/shared/utils/images_reporitory.dart';
 import 'package:poke_app/features/login/domain/bloc/login_bloc/login_bloc.dart';
@@ -54,9 +55,9 @@ class LoginPage extends StatelessWidget {
               return null;
             },
             done: (message) {
-              /*context.router.pop().whenComplete(() {
-                context.router.replace(const CitiesRoute());
-              });*/
+              context.router.pop().whenComplete(() {
+                context.router.replace(const PokemonListRoute());
+              });
               return null;
             }),
         child: SingleChildScrollView(
