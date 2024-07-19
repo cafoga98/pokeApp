@@ -1,0 +1,19 @@
+{
+  "loading": "Loading",
+  "noConnection": "No Internet conection",
+  "timeOut": "Problems connecting to the server",
+  "noData": "No Data",
+  "unauthorised": "No authorization for application",
+  "noSaveLocalData" : "Failed to save the information, please try again later",
+  "timeOutLocal" : "Problems connecting to internal database, please try again later",
+  "mandatoryField": "Mandatory field",
+  "noLaunch": "Could not launch",
+  "singUp": "Sing Up With",
+  "forgotPassword": "Forgot Password ?",
+  "login": "Login",
+  "username": "Username",
+  "password": "Password",
+  "loadingLogin": "Logging in, please wait a moment ...",
+  "wrongCredentials": "Incorrect credentials",
+  "loadingInformation": "Loading information"
+}
