@@ -26,6 +26,7 @@ class AppRouter extends _$AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(page: SplashRoute.page, path: '/', initial: true),
-
+    AutoRoute(page: LoginRoute.page, path: '/'),
+    AutoRoute(page: PokemonListRoute.page, path: '/'),
   ];
 }
