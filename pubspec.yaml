@@ -75,3 +75,6 @@ flutter:
         - asset: assets/fonts/Caveat/Caveat-Medium.ttf
         - asset: assets/fonts/Caveat/Caveat-Regular.ttf
         - asset: assets/fonts/Caveat/Caveat-SemiBold.ttf
+
+flutter_intl:
+  enabled: true
