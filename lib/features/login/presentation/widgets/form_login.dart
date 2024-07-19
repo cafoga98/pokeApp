@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:poke_app/features/login/domain/entities/user.dart';
 
 import '/generated/l10n.dart';
 import '/core/shared/utils/style_repository.dart';
@@ -22,8 +23,7 @@ class FormLogin extends StatefulWidget {
 class _FormLoginState extends State<FormLogin> {
   final _formKey = GlobalKey<FormState>();
 
-  String? username = '';
-  String? password = '';
+  User user = User();
 
   bool obscureText = true;
 
@@ -55,7 +55,7 @@ class _FormLoginState extends State<FormLogin> {
                 return null;
               },
               onSaved: (data) {
-                username = data;
+                user.username = data;
               },
             ),
             SizedBox(
@@ -83,7 +83,7 @@ class _FormLoginState extends State<FormLogin> {
                     ),
                   ),
                   onSaved: (data) {
-                    password = data;
+                    user.password = data;
                   },
                   validator: (data) {
                     if (data == null || data.isEmpty) {
@@ -126,8 +126,8 @@ class _FormLoginState extends State<FormLogin> {
                   _formKey.currentState!.save();
                   context.read<LoginBloc>().add(
                         LoginEvent.started(
-                          userName: username!,
-                          password: password!,
+                          userName: user.username!,
+                          password: user.password!,
                         ),
                       );
                 }
