@@ -19,9 +19,16 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     on<FetchPokemonDetail>(_fetchPokemonDetail);
   }
 
+  int _page = 0;
+
   void _fetchPokemons(FetchPokemons event, Emitter<PokemonState> emit) async {
     emit(const PokemonState.pokemonLoading());
-    final pokemons = await pokemonRepository.fetchPokemons(page: event.page);
+    if (event.handlePage == HandlePage.next) {
+      _page = _page + 20;
+    } else if (event.handlePage == HandlePage.back && _page != 0) {
+      _page = _page - 20;
+    }
+    final pokemons = await pokemonRepository.fetchPokemons(page: _page);
     emit(
       await pokemons.fold(
         (l) => PokemonState.pokemonError(message: l.toString()),
@@ -31,13 +38,6 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         },
       ),
     );
-    /*PokemonState state = await pokemons.fold(
-      (l) => PokemonState.pokemonError(message: l.toString()),
-      (pokemonList) async {
-        final pokemonsTypes = await getPokemonType(pokemonList: pokemons);
-        return PokemonState.pokemonLoaded(pokemons: pokemonsTypes);
-      },
-    );*/
   }
 
   Future<List<Pokemon>> getPokemonType(
