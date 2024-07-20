@@ -69,12 +69,12 @@ flutter:
     - assets/media/
 
   fonts:
-    - family: Caveat
+    - family: ChakraPetch
       fonts:
-        - asset: assets/fonts/Caveat/Caveat-Bold.ttf
-        - asset: assets/fonts/Caveat/Caveat-Medium.ttf
-        - asset: assets/fonts/Caveat/Caveat-Regular.ttf
-        - asset: assets/fonts/Caveat/Caveat-SemiBold.ttf
+        - asset: assets/fonts/ChakraPetch/ChakraPetch-Bold.ttf
+        - asset: assets/fonts/ChakraPetch/ChakraPetch-Medium.ttf
+        - asset: assets/fonts/ChakraPetch/ChakraPetch-Regular.ttf
+        - asset: assets/fonts/ChakraPetch/ChakraPetch-SemiBold.ttf
 
 flutter_intl:
   enabled: true
