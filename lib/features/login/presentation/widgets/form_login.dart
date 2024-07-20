@@ -36,6 +36,9 @@ class _FormLoginState extends State<FormLogin> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 20.h,
+            ),
             Text(
               S.current.login,
               style: extraLarge,
