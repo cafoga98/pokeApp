@@ -9,4 +9,7 @@ abstract class PokemonRepositoryInterfaces {
 
   Future<Either<Failure, PokemonDetail>> fetchPokemonDetail(
       {required String url});
+
+  Future<Either<Failure, List<Pokemon>>> searchPokemon(
+      {required String name});
 }

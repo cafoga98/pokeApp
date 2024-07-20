@@ -17,6 +17,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
       : super(const PokemonState.pokemonInitial()) {
     on<FetchPokemons>(_fetchPokemons);
     on<FetchPokemonDetail>(_fetchPokemonDetail);
+    on<SearchPokemons>(_searchPokemons);
   }
 
   int _page = 0;
@@ -31,7 +32,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     final pokemons = await pokemonRepository.fetchPokemons(page: _page);
     emit(
       await pokemons.fold(
-        (l) => PokemonState.pokemonError(message: l.toString()),
+        (l) => PokemonState.pokemonError(message: l.message!),
         (pokemonList) async {
           final pokemonsTypes = await getPokemonType(pokemonList: pokemonList);
           return PokemonState.pokemonLoaded(pokemons: pokemonsTypes);
@@ -65,9 +66,20 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     final pokemon = await pokemonRepository.fetchPokemonDetail(url: event.url);
     emit(
       pokemon.fold(
-        (l) => PokemonState.pokemonDetailError(message: l.toString()),
+        (l) => PokemonState.pokemonDetailError(message: l.message!),
         (pokemonDetail) =>
             PokemonState.pokemonDetailLoaded(pokemonDetail: pokemonDetail),
+      ),
+    );
+  }
+
+  void _searchPokemons(SearchPokemons event, Emitter<PokemonState> emit) async {
+    emit(const PokemonState.pokemonLoading());
+    final pokemons = await pokemonRepository.searchPokemon(name: event.name);
+    emit(
+      pokemons.fold(
+            (l) => PokemonState.pokemonError(message: l.message!),
+            (pokemonList) => PokemonState.pokemonLoaded(pokemons: pokemonList),
       ),
     );
   }
