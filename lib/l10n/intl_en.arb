@@ -15,5 +15,7 @@
   "password": "Password",
   "loadingLogin": "Logging in, please wait a moment ...",
   "wrongCredentials": "Incorrect credentials",
-  "loadingInformation": "Loading information"
+  "loadingInformation": "Loading information",
+  "name": "Name",
+  "type": "Type"
 }
