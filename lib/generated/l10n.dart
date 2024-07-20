@@ -309,6 +309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Search by pokemon name`
+  String get searchByName {
+    return Intl.message(
+      'Search by pokemon name',
+      name: 'searchByName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

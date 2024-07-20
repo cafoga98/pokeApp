@@ -24,5 +24,6 @@
   "height": "Height",
   "types": "Types",
   "moves": "Moves",
-  "viewJson": "View JSON"
+  "viewJson": "View JSON",
+  "searchByName": "Search by pokemon name"
 }

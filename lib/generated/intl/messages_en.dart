@@ -46,6 +46,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pokemonDetails":
             MessageLookupByLibrary.simpleMessage("Pokemon Detail"),
         "pokemonList": MessageLookupByLibrary.simpleMessage("Pokemon List"),
+        "searchByName":
+            MessageLookupByLibrary.simpleMessage("Search by pokemon name"),
         "singUp": MessageLookupByLibrary.simpleMessage("Sing Up With"),
         "timeOut": MessageLookupByLibrary.simpleMessage(
             "Problems connecting to the server"),
