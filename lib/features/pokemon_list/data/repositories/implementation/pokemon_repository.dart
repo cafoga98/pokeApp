@@ -44,4 +44,19 @@ class PokemonRepository extends PokemonRepositoryInterfaces {
       return left(Failure.noActionComplete(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Pokemon>>> searchPokemon(
+      {required String name}) async {
+    try {
+      final response = await pokemonListService.searchPokemons(name: name);
+      return right([response]);
+    } on NoConnectionException catch (e) {
+      return left(Failure.noConnection(message: e.message));
+    } on NoDataException catch (_) {
+      return left(Failure.noData(message: S.current.noData));
+    } catch (e) {
+      return left(Failure.noActionComplete(message: e.toString()));
+    }
+  }
 }

@@ -22,8 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "details": MessageLookupByLibrary.simpleMessage("Details"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password ?"),
+        "height": MessageLookupByLibrary.simpleMessage("Height"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading"),
         "loadingInformation":
             MessageLookupByLibrary.simpleMessage("Loading information"),
@@ -32,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mandatoryField":
             MessageLookupByLibrary.simpleMessage("Mandatory field"),
+        "moves": MessageLookupByLibrary.simpleMessage("Moves"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("No Internet conection"),
@@ -40,15 +43,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "noSaveLocalData": MessageLookupByLibrary.simpleMessage(
             "Failed to save the information, please try again later"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "pokemonDetails":
+            MessageLookupByLibrary.simpleMessage("Pokemon Detail"),
+        "pokemonList": MessageLookupByLibrary.simpleMessage("Pokemon List"),
+        "searchByName":
+            MessageLookupByLibrary.simpleMessage("Search by pokemon name"),
         "singUp": MessageLookupByLibrary.simpleMessage("Sing Up With"),
         "timeOut": MessageLookupByLibrary.simpleMessage(
             "Problems connecting to the server"),
         "timeOutLocal": MessageLookupByLibrary.simpleMessage(
             "Problems connecting to internal database, please try again later"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "types": MessageLookupByLibrary.simpleMessage("Types"),
         "unauthorised": MessageLookupByLibrary.simpleMessage(
             "No authorization for application"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
+        "viewJson": MessageLookupByLibrary.simpleMessage("View JSON"),
         "wrongCredentials":
             MessageLookupByLibrary.simpleMessage("Incorrect credentials")
       };

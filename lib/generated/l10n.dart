@@ -239,6 +239,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Pokemon List`
+  String get pokemonList {
+    return Intl.message(
+      'Pokemon List',
+      name: 'pokemonList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details`
+  String get details {
+    return Intl.message(
+      'Details',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pokemon Detail`
+  String get pokemonDetails {
+    return Intl.message(
+      'Pokemon Detail',
+      name: 'pokemonDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Height`
+  String get height {
+    return Intl.message(
+      'Height',
+      name: 'height',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Types`
+  String get types {
+    return Intl.message(
+      'Types',
+      name: 'types',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Moves`
+  String get moves {
+    return Intl.message(
+      'Moves',
+      name: 'moves',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View JSON`
+  String get viewJson {
+    return Intl.message(
+      'View JSON',
+      name: 'viewJson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search by pokemon name`
+  String get searchByName {
+    return Intl.message(
+      'Search by pokemon name',
+      name: 'searchByName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

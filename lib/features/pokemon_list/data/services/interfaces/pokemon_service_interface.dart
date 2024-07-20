@@ -5,4 +5,6 @@ abstract class PokemonServiceInterface {
   Future<List<Pokemon>> fetchPokemons({required int page});
 
   Future<PokemonDetail> fetchPokemonDetail({required String url});
+
+  Future<Pokemon> searchPokemons({required String name});
 }

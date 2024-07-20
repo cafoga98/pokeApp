@@ -50,4 +50,16 @@ class PokemonService extends PokemonServiceInterface {
       rethrow;
     }
   }
+
+  @override
+  Future<Pokemon> searchPokemons({required String name}) async {
+    try {
+      var response = await apiConfig.apiGet(
+          '${environmentConfig.apiBase}/pokemon/$name/');
+      final detail = PokemonDetail.fromJson(response);
+      return Pokemon(name: detail.name, url: '${environmentConfig.apiBase}/pokemon/${response['id']}/', imageUrl: null, types: detail.types);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

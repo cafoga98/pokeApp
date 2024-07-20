@@ -4,27 +4,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '/core/shared/utils/colors_repository.dart';
 
 final extraLarge = TextStyle(
-  fontFamily: 'Caveat',
+  fontFamily: 'ChakraPetch',
   fontWeight: FontWeight.bold,
   fontSize: 31.sp,
   color: Colors.white,
 );
 
 final large = TextStyle(
-  fontFamily: 'Caveat',
+  fontFamily: 'ChakraPetch',
   fontSize: 26.sp,
   color: Colors.black,
 );
 
 final medium = TextStyle(
-  fontFamily: 'Caveat',
+  fontFamily: 'ChakraPetch',
   fontSize: 19.sp,
   color: Colors.white,
   fontWeight: FontWeight.bold,
 );
 
 final small = TextStyle(
-  fontFamily: 'Caveat',
+  fontFamily: 'ChakraPetch',
   fontSize: 17.sp,
   color: ColorsRepository.realBlue,
 );

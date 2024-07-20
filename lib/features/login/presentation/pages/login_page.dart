@@ -25,73 +25,71 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsRepository.goldenPoppy,
-      body: BlocListener<LoginBloc, LoginState>(
-        listener: (context, state) => state.maybeWhen(orElse: () {
-          return null;
-        }, error: (e) {
-          context.router.popForced();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(e.message ?? S.current.noData),
-            ),
-          );
-          return null;
-        }, loading: () {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (context) {
-              return PopScope(
-                canPop: false,
-                child: LoadingPage(
-                  message: S.current.loadingLogin,
+      body: SingleChildScrollView(
+        primary: true,
+        child: BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) => state.maybeWhen(
+            orElse: () {
+              return null;
+            },
+            error: (e) {
+              context.router.popForced();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(e.message ?? S.current.noData),
                 ),
               );
+              return null;
             },
-          );
-          return null;
-        }, done: (message) {
-          context.router.pop().whenComplete(
-            () {
-              context.read<PokemonBloc>().add(
-                const PokemonEvent.fetchPokemons(page: 0),
+            loading: () {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) {
+                  return PopScope(
+                    canPop: false,
+                    child: LoadingPage(
+                      message: S.current.loadingLogin,
+                    ),
+                  );
+                },
               );
-              context.router.replace(
-                const PokemonListRoute(),
-              );
+              return null;
             },
-          );
-          return null;
-        }),
-        child: SingleChildScrollView(
-          //physics: const NeverScrollableScrollPhysics(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 200.h,
-                    margin: EdgeInsets.only(top: 20.h),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.contain,
-                        image: AssetImage(
-                          ImageRepository.pokeLogo,
+            done: (message) {
+              context.router.pop().whenComplete(
+                () {
+                  context.read<PokemonBloc>().add(
+                        const PokemonEvent.fetchPokemons(
+                          handlePage: HandlePage.none,
                         ),
-                      ),
+                      );
+                  context.router.replace(
+                    const PokemonListRoute(),
+                  );
+                },
+              );
+              return null;
+            },
+          ),
+          child: Column(
+            children: [
+              Container(
+                height: 200.h,
+                margin: EdgeInsets.only(top: 20.h),
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.contain,
+                    image: AssetImage(
+                      ImageRepository.pokeLogo,
                     ),
                   ),
-                  const FormLogin(),
-                  const FooterLogin(),
-                ],
+                ),
               ),
-            ),
+              const FormLogin(),
+              const FooterLogin(),
+            ],
           ),
         ),
       ),
