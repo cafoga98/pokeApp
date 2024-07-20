@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mandatoryField":
             MessageLookupByLibrary.simpleMessage("Mandatory field"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noConnection":
             MessageLookupByLibrary.simpleMessage("No Internet conection"),
         "noData": MessageLookupByLibrary.simpleMessage("No Data"),
@@ -44,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Problems connecting to the server"),
         "timeOutLocal": MessageLookupByLibrary.simpleMessage(
             "Problems connecting to internal database, please try again later"),
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
         "unauthorised": MessageLookupByLibrary.simpleMessage(
             "No authorization for application"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),

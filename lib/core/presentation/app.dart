@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poke_app/core/shared/utils/colors_repository.dart';
+import 'package:poke_app/features/pokemon_list/data/repositories/implementation/pokemon_repository.dart';
+import 'package:poke_app/features/pokemon_list/data/services/implementation/pokemon_service.dart';
+import 'package:poke_app/features/pokemon_list/domain/blocs/pokemon_bloc/pokemon_bloc.dart';
 
 import '/generated/l10n.dart';
 import '/core/shared/auto_route/router.dart';
@@ -64,12 +67,28 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           RepositoryProvider<EnvironmentConfig>(
             create: (context) => widget.environmentConfig,
           ),
+          RepositoryProvider<PokemonService>(
+            create: (context) => PokemonService(
+              context.read<ApiConfig>(),
+              context.read<EnvironmentConfig>(),
+            ),
+          ),
+          RepositoryProvider<PokemonRepository>(
+            create: (context) => PokemonRepository(
+              pokemonListService: context.read<PokemonService>(),
+            ),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
               create: (context) => LoginBloc(
                 localStorageRepository: context.read<LocalStorageRepository>(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => PokemonBloc(
+                pokemonRepository: context.read<PokemonRepository>(),
               ),
             ),
           ],
