@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poke_app/core/shared/utils/colors_repository.dart';
+import 'package:poke_app/core/shared/utils/style_repository.dart';
 import 'package:poke_app/features/pokemon_list/domain/blocs/pokemon_bloc/pokemon_bloc.dart';
 import 'package:poke_app/features/pokemon_list/presentation/widgets/pokemon_card.dart';
+import 'package:poke_app/features/pokemon_list/presentation/widgets/search_widget.dart';
 import 'package:poke_app/generated/l10n.dart';
 
 @RoutePage()
@@ -62,45 +64,63 @@ class PokemonListPage extends StatelessWidget {
           S.current.pokemonList,
         ),
       ),
-      body: BlocBuilder<PokemonBloc, PokemonState>(
-        buildWhen: (context, state) => state.maybeWhen(
-          orElse: () => true,
-          pokemonDetailLoaded: (d) => false,
-          pokemonDetailLoading: () => false,
-          pokemonDetailError: (e) => false,
-        ),
-        builder: (context, state) => state.maybeWhen(
-          orElse: () {
-            return Container();
-          },
-          pokemonLoading: () {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-          pokemonLoaded: (pokemonList) {
-            if (pokemonList.isNotEmpty) {
-              return ListView.builder(
-                padding: const EdgeInsets.all(10),
-                itemCount: pokemonList.length,
-                itemBuilder: (context, index) {
-                  return PokemonCard(
-                    pokemon: pokemonList[index],
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: SearchWidget(),
+          ),
+          BlocBuilder<PokemonBloc, PokemonState>(
+            buildWhen: (context, state) => state.maybeWhen(
+              orElse: () => true,
+              pokemonDetailLoaded: (d) => false,
+              pokemonDetailLoading: () => false,
+              pokemonDetailError: (e) => false,
+            ),
+            builder: (context, state) => Expanded(
+              flex: 8,
+              child: state.maybeWhen(
+                orElse: () {
+                  return Container();
+                },
+                pokemonLoading: () {
+                  return const Center(
+                    child: CircularProgressIndicator(),
                   );
                 },
-              );
-            } else {
-              return Center(
-                child: Text(S.current.noData),
-              );
-            }
-          },
-          pokemonError: (e) {
-            return Center(
-              child: Text(e),
-            );
-          },
-        ),
+                pokemonLoaded: (pokemonList) {
+                  if (pokemonList.isNotEmpty) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.all(10),
+                      itemCount: pokemonList.length,
+                      itemBuilder: (context, index) {
+                        return PokemonCard(
+                          pokemon: pokemonList[index],
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: Text(
+                        S.current.noData,
+                        style: medium,
+                      ),
+                    );
+                  }
+                },
+                pokemonError: (e) {
+                  return Center(
+                    child: Text(
+                      e,
+                      style: medium,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
