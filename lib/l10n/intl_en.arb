@@ -17,5 +17,12 @@
   "wrongCredentials": "Incorrect credentials",
   "loadingInformation": "Loading information",
   "name": "Name",
-  "type": "Type"
+  "type": "Type",
+  "pokemonList": "Pokemon List",
+  "details": "Details",
+  "pokemonDetails": "Pokemon Detail",
+  "height": "Height",
+  "types": "Types",
+  "moves": "Moves",
+  "viewJson": "View JSON"
 }

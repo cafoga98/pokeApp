@@ -4,5 +4,5 @@ class ImageRepository {
   static const facebookIcon = 'assets/img/facebook_icon.png';
   static const emailIcon = 'assets/img/email_icon.png';
   static const pokeLogo = 'assets/img/pokeApp_logo_NoBackground.png';
-
+  static const pokemonGarden = 'assets/img/pokemon_garden.png';
 }

@@ -28,5 +28,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: SplashRoute.page, path: '/', initial: true),
     AutoRoute(page: LoginRoute.page, path: '/'),
     AutoRoute(page: PokemonListRoute.page, path: '/'),
+    AutoRoute(page: PokemonDetailsRoute.page, path: '/'),
   ];
 }

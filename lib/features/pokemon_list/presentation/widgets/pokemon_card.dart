@@ -1,7 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:poke_app/core/shared/auto_route/router.dart';
 import 'package:poke_app/core/shared/utils/colors_repository.dart';
 import 'package:poke_app/core/shared/utils/style_repository.dart';
+import 'package:poke_app/features/pokemon_list/domain/blocs/pokemon_bloc/pokemon_bloc.dart';
 import 'package:poke_app/features/pokemon_list/domain/entities/pokemon.dart';
 import 'package:poke_app/generated/l10n.dart';
 
@@ -49,7 +53,7 @@ class PokemonCard extends StatelessWidget {
                     children: [
                       Text(
                         pokemon.name,
-                        maxLines: 2,
+                        maxLines: 1,
                         style: large.copyWith(
                           color: ColorsRepository.realBlue,
                           height: 1,
@@ -59,9 +63,8 @@ class PokemonCard extends StatelessWidget {
                         height: 5.h,
                       ),
                       Text(
-                        '${S.current.type}: ${pokemon.types != null
-                            ? pokemon.types!.map((e) => e.type.name).join(',')
-                            : ''}',
+                        '${S.current.type}: ${pokemon.types != null ? pokemon.types!.map((e) => e.type.name).join(',') : ''}',
+                        maxLines: 1,
                         style: medium.copyWith(
                           color: ColorsRepository.realBlue,
                           height: 1,
@@ -71,9 +74,18 @@ class PokemonCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              context.read<PokemonBloc>().add(
+                                    PokemonEvent.fetchPokemonDetail(
+                                      url: pokemon.url,
+                                    ),
+                                  );
+                              context.router.push(
+                                const PokemonDetailsRoute(),
+                              );
+                            },
                             child: Text(
-                              'Details',
+                              S.current.details,
                               style: small.copyWith(
                                 color: ColorsRepository.realBlue,
                                 fontWeight: FontWeight.bold,
