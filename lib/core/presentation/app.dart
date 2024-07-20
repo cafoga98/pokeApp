@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:poke_app/core/shared/utils/colors_repository.dart';
+import 'package:poke_app/core/shared/utils/style_repository.dart';
 import 'package:poke_app/features/pokemon_list/data/repositories/implementation/pokemon_repository.dart';
 import 'package:poke_app/features/pokemon_list/data/services/implementation/pokemon_service.dart';
 import 'package:poke_app/features/pokemon_list/domain/blocs/pokemon_bloc/pokemon_bloc.dart';
@@ -106,8 +107,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   ),
                 ),
               ),
-              appBarTheme: const AppBarTheme(
+              appBarTheme: AppBarTheme(
                 elevation: 0,
+                actionsIconTheme: const IconThemeData(color: Colors.white),
+                iconTheme: const IconThemeData(color: Colors.white),
+                titleTextStyle: extraLarge,
                 color: ColorsRepository.realBlue,
               ),
             ),
