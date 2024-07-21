@@ -59,39 +59,6 @@ class ApiConfig {
     }
   }
 
-  /// Makes a POST request to the specified [uri] with optional [body] and [headers].
-  ///
-  /// Throws exceptions for various scenarios, such as no internet connection,
-  /// timeout, and different response status codes.
-  Future<dynamic> apiPost(
-    String uri, {
-    Object? body,
-    Map<String, String>? headers,
-  }) async {
-    try {
-      ///Valid internet connection
-      if (await connectivityChecker.checkingConnection() == false) {
-        throw NoConnectionException(S.current.noConnection);
-      }
-
-      final response = await client
-          .post(
-        Uri.parse(uri),
-        body: body,
-        headers: headers,
-      )
-          .timeout(
-        const Duration(seconds: 60),
-        onTimeout: () {
-          throw TimeOutException(S.current.timeOut);
-        },
-      );
-      return _responseManager(response);
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   /// Handles the response from the API by checking the status code.
   ///
   /// Throws specific exceptions based on the response status code.
